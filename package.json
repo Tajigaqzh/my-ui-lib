@@ -1,0 +1,37 @@
+{
+  "name": "my-ui-lib-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "setup": "pnpm install && pnpm -r run build",
+    "dev:core": "pnpm --filter @my-ui/core dev",
+    "dev:docs": "pnpm --filter @my-ui/docs dev",
+    "build:all": "pnpm -r run build",
+    "test:all": "pnpm -r run test",
+    "lint:all": "pnpm -r run lint",
+    "clean": "pnpm -r exec rm -rf node_modules dist && rm -rf node_modules",
+    "build": "pnpm -r run build",
+    "dev": "pnpm -r run dev",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run lint",
+
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish",
+    "ci:version": "changeset version --snapshot dev",
+    "ci:publish": "changeset publish --tag dev"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.8",
+    "@types/node": "^20.19.27",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/test-utils": "^2.0.0",
+    "typescript": "^5.9.3",
+    "vite": "5.4.21",
+    "vitest": "^0.30.0",
+    "vue-tsc": "^1.8.27"
+  },
+  "changelog": ["./scripts/changelog-generator.js", null]
+}
