@@ -3,20 +3,29 @@
   "version": "1.0.0",
   "description": "Core component library for My UI",
   "type": "module",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
+    },
+    "./button": {
+      "types": "./dist/button/index.d.ts",
+      "import": "./dist/button/index.es.js",
+      "require": "./dist/button/index.cjs.js"
     }
   },
   "scripts": {
     "dev": "vite build --watch",
-    "build": "vite build"
+    "prebuild": "node ./scripts/clean-dist.cjs && node ./scripts/generate-exports.cjs",
+    "build": "vite build",
+    "postbuild": "node ./scripts/copy-dist.cjs"
   },
   "peerDependencies": {
     "vue": "^3.3.0"
