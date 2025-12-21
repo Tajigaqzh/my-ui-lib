@@ -16,22 +16,29 @@
     "dev": "pnpm -r run dev",
     "test": "pnpm -r run test",
     "lint": "pnpm -r run lint",
-
     "changeset": "changeset",
     "version": "changeset version",
     "release": "pnpm build && changeset publish",
     "ci:version": "changeset version --snapshot dev",
-    "ci:publish": "changeset publish --tag dev"
+    "ci:publish": "changeset publish --tag dev",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
     "@types/node": "^20.19.27",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/test-utils": "^2.0.0",
+    "sass": "^1.97.1",
     "typescript": "^5.9.3",
     "vite": "5.4.21",
-    "vitest": "^0.30.0",
+    "vitepress": "2.0.0-alpha.15",
+    "vitest": "^4.0.16",
     "vue-tsc": "^1.8.27"
   },
-  "changelog": ["./scripts/changelog-generator.js", null]
+  "changelog": [
+    "./scripts/changelog-generator.js",
+    null
+  ]
 }
