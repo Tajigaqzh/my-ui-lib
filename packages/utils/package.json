@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "My UI utils package",
   "type": "module",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "main": "../../dist/utils/index.cjs.js",
+  "module": "../../dist/utils/index.es.js",
+  "types": "../../dist/utils/index.d.ts",
+  "files": [],
+  "exports": {
+    ".": {
+      "types": "../../dist/utils/index.d.ts",
+      "import": "../../dist/utils/index.es.js",
+      "require": "../../dist/utils/index.cjs.js"
+    }
+  },
   "scripts": {
     "build": "vite build"
   },

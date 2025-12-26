@@ -30,8 +30,8 @@ function getEntries() {
 
 const entries = getEntries();
 
-// write output to repository root dist/core so all package builds are centralized
-const outDir = resolve(__dirname, "../../dist/core");
+// 主入口产物输出到 dist，组件产物输出到 dist/core
+const outDir = resolve(__dirname, "../../dist");
 
 export default defineConfig({
   plugins: [
@@ -52,14 +52,13 @@ export default defineConfig({
   build: {
     outDir,
     lib: {
-      // multiple entry build: each component becomes its own entry
       entry: entries,
       name: "MyUICore",
-      // write each component to dist/<component>/index.<format>.js, keep root as index.<format>.js
-      fileName: (format, entryName) =>
-        entryName === "index"
-          ? `index.${format}.js`
-          : `${entryName}/index.${format}.js`,
+      fileName: (format, entryName) => {
+        // 主入口产物输出到 dist/index.js，其它组件输出到 dist/core/xxx/index.js
+        if (entryName === "index") return `index.${format}.js`;
+        return `core/${entryName}/index.${format}.js`;
+      },
     },
     rollupOptions: {
       external: ["vue"],
@@ -67,7 +66,6 @@ export default defineConfig({
         globals: {
           vue: "Vue",
         },
-        // preserve module directory structure so each component ends up in its own folder under dist/
         preserveModules: true,
         preserveModulesRoot: "packages/core",
       },
