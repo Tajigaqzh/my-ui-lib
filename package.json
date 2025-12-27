@@ -24,7 +24,7 @@
     "release": "pnpm build && changeset publish",
     "ci:version": "changeset version --snapshot dev",
     "ci:publish": "changeset publish --tag dev",
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev docs --port=5000",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },

@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "my-ui-lib"
-  text: "A VitePress Site"
+  text: "a vue component lib"
   tagline: My great project tagline
   actions:
     - theme: brand

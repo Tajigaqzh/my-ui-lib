@@ -34,6 +34,12 @@ const entries = getEntries();
 const outDir = resolve(__dirname, "../../dist");
 
 export default defineConfig({
+  resolve: {
+    alias: [
+      { find: /^~\/?/, replacement: `${resolve(__dirname, 'src')}/` },
+      { find: /^@\/?/, replacement: `${resolve(__dirname, 'src')}/` }
+    ]
+  },
   plugins: [
     vue(),
     dts({
