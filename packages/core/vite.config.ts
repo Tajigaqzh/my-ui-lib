@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import dts from "vite-plugin-dts";
+import tsconfigPaths from "vite-tsconfig-paths";
 import { resolve } from "path";
 import fs from "fs";
 
@@ -41,6 +42,7 @@ export default defineConfig({
     ]
   },
   plugins: [
+    tsconfigPaths(),
     vue(),
     dts({
       outDir,
