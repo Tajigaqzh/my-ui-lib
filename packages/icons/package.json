@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "My UI icons package",
   "type": "module",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "main": "../../dist/icons/index.cjs.js",
+  "module": "../../dist/icons/index.es.js",
+  "types": "../../dist/icons/index.d.ts",
+  "files": [],
+  "exports": {
+    ".": {
+      "types": "../../dist/icons/index.d.ts",
+      "import": "../../dist/icons/index.es.js",
+      "require": "../../dist/icons/index.cjs.js"
+    }
+  },
   "scripts": {
     "build": "vite build"
   },
