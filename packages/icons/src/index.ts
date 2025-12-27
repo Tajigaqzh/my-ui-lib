@@ -1,5 +1,5 @@
 // $pkg package entry
-export default {}
+export default {};
 
 // 示例导出
 // export const version = '1.0.0'

@@ -1,8 +1,8 @@
-import IconExample from './IconExample.vue'
+import IconExample from "./IconExample.vue";
 
-export { IconExample }
+export { IconExample };
 export default {
   install(app) {
-    app.component('IconExample', IconExample)
-  }
-}
+    app.component("IconExample", IconExample);
+  },
+};

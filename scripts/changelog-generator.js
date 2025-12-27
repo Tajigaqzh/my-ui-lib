@@ -1,32 +1,32 @@
 const getReleaseLine = async (changeset, type) => {
   const [firstLine, ...futureLines] = changeset.summary
-    .split('\n')
-    .map(l => l.trimRight())
-  
-  let returnVal = `- ${firstLine}`
-  
+    .split("\n")
+    .map((l) => l.trimRight());
+
+  let returnVal = `- ${firstLine}`;
+
   if (futureLines.length > 0) {
-    returnVal += `\n${futureLines.map(l => `  ${l}`).join('\n')}`
+    returnVal += `\n${futureLines.map((l) => `  ${l}`).join("\n")}`;
   }
-  
-  return returnVal
-}
+
+  return returnVal;
+};
 
 const getDependencyReleaseLine = async (changesets, dependenciesUpdated) => {
-  if (dependenciesUpdated.length === 0) return ''
-  
+  if (dependenciesUpdated.length === 0) return "";
+
   const changesetLinks = changesets.map(
-    changeset => `- Updated dependencies [${changeset.commit}]:`
-  )
-  
+    (changeset) => `- Updated dependencies [${changeset.commit}]:`
+  );
+
   const updatedDepenenciesList = dependenciesUpdated.map(
-    dependency => `  - ${dependency.name}@${dependency.newVersion}`
-  )
-  
-  return [...changesetLinks, ...updatedDepenenciesList].join('\n')
-}
+    (dependency) => `  - ${dependency.name}@${dependency.newVersion}`
+  );
+
+  return [...changesetLinks, ...updatedDepenenciesList].join("\n");
+};
 
 module.exports = {
   getReleaseLine,
-  getDependencyReleaseLine
-}
+  getDependencyReleaseLine,
+};

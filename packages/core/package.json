@@ -14,15 +14,18 @@
       "require": "../../dist/index.cjs.js"
     },
     "./button": {
-      "types": "./dist/button/index.d.ts",
-      "import": "./dist/button/index.es.js",
-      "require": "./dist/button/index.cjs.js"
+      "types": "../../dist/core/button/index.d.ts",
+      "import": "../../dist/core/button.es.js",
+      "require": "../../dist/core/button.cjs.js"
+    },
+    "./card": {
+      "types": "../../dist/core/card/index.d.ts",
+      "import": "../../dist/core/card.es.js",
+      "require": "../../dist/core/card.cjs.js"
     }
   },
   "scripts": {
-    "dev": "vite build --watch",
-    "prebuild": "node ./scripts/clean-dist.cjs && node ./scripts/generate-exports.cjs",
-    "build": "vite build"
+    "build": "cd ../.. && vite build"
   },
   "peerDependencies": {
     "vue": "^3.3.0"

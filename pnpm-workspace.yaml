@@ -1,5 +1,5 @@
 packages:
   - 'packages/*'
-  - 'examples/*'
+  - 'playground'
   - '!**/test/**'
   - '!**/node_modules/**'

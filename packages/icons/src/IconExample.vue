@@ -12,16 +12,16 @@
 
 <script>
 export default {
-  name: 'IconExample',
+  name: "IconExample",
   props: {
     size: {
       type: [Number, String],
-      default: 24
+      default: 24,
     },
     color: {
       type: String,
-      default: 'currentColor'
-    }
-  }
-}
+      default: "currentColor",
+    },
+  },
+};
 </script>

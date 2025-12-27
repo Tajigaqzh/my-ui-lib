@@ -1,1 +1,3 @@
-export const buildProps = (prop, key?: string) => {};
+export const buildProps = <T extends Record<string, any>>(props: T): T => {
+  return props;
+};

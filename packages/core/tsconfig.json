@@ -1,11 +1,19 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"],
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@my-ui/utils": ["../utils/src"],
+      "@my-ui/theme": ["../theme/src"],
+      "@my-ui/icons": ["../icons/src"]
     }
   },
-  "include": ["src", "index.ts"]
+  "vueCompilerOptions": {
+    "target": 3
+  },
+  "include": ["**/*.ts", "**/*.vue", "**/*.tsx", "shims-vue.d.ts"],
+  "exclude": ["node_modules", "dist"]
 }
