@@ -114,10 +114,18 @@
 
 > 在下方添加你的新需求，AI 会读取并执行
 
-### 需求模板
+### 标记系统说明
+- `[TODO]` - 待实现的需求
+- `[IN_PROGRESS]` - 正在实现中  
+- `[DONE]` - 已完成
+- `[BLOCKED]` - 被阻塞的需求
 
-- 打包顺序调整。我的utils和theme打包优先级最高，我希望你在打包的时候先打包这两个目录，之后再打包其他目录。
-- 完善组件库的 TypeScript 类型定义
-- 添加 ESLint 和 Prettier 配置，格式化代码，配置 Husky 和 Commitlint规范提交信息，在提交之前执行format格式化代码。
-- 完善card的VitePress 文档站点，之后新生成的模块自动更新VitePress，修改vitepress默认端口，确保他不使用5173
-- 使用 Turborepo 优化构建性能
+### 需求列表
+
+- 打包顺序调整。我的utils和theme打包优先级最高，我希望你在打包的时候先打包这两个目录，之后再打包其他目录。`[DONE]`
+- 完善组件库的 TypeScript 类型定义 `[DONE]`
+- 添加 ESLint 和 Prettier 配置，格式化代码，配置 Husky 和 Commitlint规范提交信息，在提交之前执行format格式化代码。`[DONE]`
+- 完善card的VitePress 文档站点，之后新生成的模块自动更新VitePress，修改vitepress默认端口，确保他不使用5173 `[DONE]`
+- 使用 Turborepo 优化构建性能 `[DONE]`
+- playground已经实现了直接引用core包中的组件，现在我想让你进一步完善playground包，按照我的组件名创建路由，一个路由对应一个组件，这样可以单独测试某一个组件。`[IN_PROGRESS]`
+- 还有一个问题，当我打包后，my-button的样式好像丢失了，请帮我检查一下打包后的组件是否包含样式，还有我希望你能运行playground的时候允许我调整引用的依赖是构件产物，还是源文件，这样我便于对比打包后的效果和开发时的效果是否一致 `[IN_PROGRESS]`

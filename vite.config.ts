@@ -3,7 +3,6 @@ import vue from "@vitejs/plugin-vue";
 import dts from "vite-plugin-dts";
 import { resolve } from "path";
 import { readdirSync, statSync, existsSync } from "fs";
-import { glob } from "glob";
 
 /**
  * 自动扫描 packages 目录，收集所有入口文件
@@ -32,6 +31,12 @@ function getPackageEntries() {
       const coreIndex = resolve(pkgPath, "index.ts");
       if (existsSync(coreIndex)) {
         entries["index"] = coreIndex;
+      }
+
+      // Core 样式入口
+      const styleIndex = resolve(pkgPath, "style.ts");
+      if (existsSync(styleIndex)) {
+        entries["style"] = styleIndex;
       }
 
       // 扫描所有组件

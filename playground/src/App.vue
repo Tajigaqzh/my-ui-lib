@@ -1,139 +1,106 @@
 <template>
   <div class="playground">
-    <h1>My UI Component Library Playground</h1>
-
-    <section class="demo-section">
-      <h2>Button Component</h2>
-
-      <div class="demo-grid">
-        <div class="demo-item">
-          <h3>Default Buttons</h3>
-          <div class="button-group">
-            <my-button>Default</my-button>
-            <my-button type="primary">Primary</my-button>
-            <my-button disabled>Disabled</my-button>
-          </div>
-        </div>
-
-        <div class="demo-item">
-          <h3>Button Sizes</h3>
-          <div class="button-group">
-            <my-button size="small">Small</my-button>
-            <my-button size="medium">Medium</my-button>
-            <my-button size="large">Large</my-button>
-          </div>
-        </div>
+    <header class="app-header">
+      <NavigationMenu />
+      <div class="header-actions">
+        <ModeSwitcher />
       </div>
-    </section>
-
-    <section class="demo-section">
-      <h2>Card Component</h2>
-
-      <div class="demo-grid">
-        <div class="demo-item">
-          <h3>Basic Card</h3>
-          <my-card title="Card Title">
-            <p>This is the card content. You can put any content here.</p>
-          </my-card>
-        </div>
-
-        <div class="demo-item">
-          <h3>Card with Shadow on Hover</h3>
-          <my-card title="Hover Me" shadow="hover">
-            <p>This card shows shadow only on hover.</p>
-          </my-card>
-        </div>
-
-        <div class="demo-item">
-          <h3>Card without Shadow</h3>
-          <my-card title="No Shadow" shadow="never">
-            <p>This card has no shadow effect.</p>
-          </my-card>
-        </div>
-
-        <div class="demo-item">
-          <h3>Card with Custom Header</h3>
-          <my-card>
-            <template #header>
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                "
-              >
-                <span>Custom Header</span>
-                <my-button size="small" type="primary">Action</my-button>
-              </div>
-            </template>
-            <p>Card with custom header slot.</p>
-          </my-card>
-        </div>
-
-        <div class="demo-item">
-          <h3>Card with Custom Body Style</h3>
-          <my-card
-            title="Custom Padding"
-            :body-style="{ padding: '40px', backgroundColor: '#f5f7fa' }"
-          >
-            <p>This card has custom body styling.</p>
-          </my-card>
-        </div>
-      </div>
-    </section>
+    </header>
+    
+    <BreadcrumbNavigation />
+    
+    <main class="main-content">
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script setup lang="ts">
-// Components are globally registered via MyUI plugin
+import { onMounted } from 'vue';
+import NavigationMenu from './components/NavigationMenu.vue';
+import BreadcrumbNavigation from './components/BreadcrumbNavigation.vue';
+import ModeSwitcher from './components/ModeSwitcher.vue';
+import { modeSwitcher } from './services/mode-switcher';
+
+// Load styles on app startup
+onMounted(async () => {
+  await modeSwitcher.loadStyles();
+});
 </script>
 
 <style scoped>
 .playground {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
     Cantarell, sans-serif;
-}
-
-h1 {
-  color: #2c3e50;
-  margin-bottom: 40px;
-}
-
-.demo-section {
-  margin-bottom: 60px;
-}
-
-h2 {
-  color: #409eff;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #409eff;
-}
-
-h3 {
-  font-size: 14px;
-  color: #606266;
-  margin-bottom: 12px;
-  font-weight: 500;
-}
-
-.demo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-}
-
-.demo-item {
-  margin-bottom: 20px;
-}
-
-.button-group {
+  min-height: 100vh;
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.app-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-bottom: 1px solid #e4e7ed;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+.header-actions {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.main-content {
+  flex: 1;
+  min-height: calc(100vh - 120px); /* Account for header + breadcrumb */
+  overflow-x: auto; /* Handle horizontal overflow on mobile */
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 16px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .header-actions {
+    right: 12px;
+  }
+  
+  .main-content {
+    min-height: calc(100vh - 110px);
+    padding: 12px;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .header-actions {
+    right: 8px;
+  }
+  
+  .main-content {
+    min-height: calc(100vh - 100px);
+    padding: 8px;
+  }
+}
+
+/* Ensure content doesn't overflow horizontally */
+@media (max-width: 320px) {
+  .playground {
+    min-width: 320px;
+  }
+  
+  .main-content {
+    padding: 4px;
+  }
 }
 </style>

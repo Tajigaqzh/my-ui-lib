@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.26"
+    "@my-ui/core": "workspace:*",
+    "vue": "^3.5.26",
+    "vue-router": "^4.6.4"
   }
 }
